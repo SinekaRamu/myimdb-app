@@ -1,10 +1,19 @@
 import "./App.css";
+import { Suspense } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotfoundPage from "./pages/NotfoundPage";
+import Home from "./pages/HomePage";
 
 function App() {
   return (
-    <>
-      <h1>ImDb</h1>
-    </>
+    <Suspense fallback={<>Loading..</>}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="*" element={<NotfoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
