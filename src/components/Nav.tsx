@@ -2,13 +2,14 @@ import { Link } from "react-router-dom";
 
 const Nav = () => {
   return (
-    <nav className="container">
-      <ul>
+    <nav className="titleBar">
+      <h1>My iMDb</h1>
+      <ul className="navBar">
+        {/* <li>
+          <Link to="/signup">SignUp</Link>
+        </li> */}
         <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/addmovie">Login</Link>
+          <Link to="/login">LogIn</Link>
         </li>
       </ul>
     </nav>

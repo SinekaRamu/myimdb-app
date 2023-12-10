@@ -1,12 +1,12 @@
-import { Link } from "react-router-dom";
-
 import Layout from "../components/Layout";
+import Nav from "../components/Nav";
+// import Home from "../components/Movies";
 
 const HomePage = () => {
   return (
-    <Layout title="My iMDb">
-      <h1>Welcome</h1>
-      <Link to="/">home!</Link>
+    <Layout title="MyIMDb">
+      <Nav />
+      {/* <Home movies={movies} /> */}
     </Layout>
   );
 };
