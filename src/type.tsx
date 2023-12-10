@@ -7,6 +7,14 @@ export interface IMovie {
   year: number | undefined;
 }
 
+export interface IUserData {
+  firstName?: string;
+  lastName?: string;
+  userName?: string;
+  email: string;
+  password: string;
+}
+
 export interface IShowError {
   action: string;
   msg: string;

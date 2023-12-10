@@ -15,7 +15,6 @@ body {
 }
 h1,
 h2 {
-  display: inline;
   text-align: center;
   color: rgb(245, 197, 24);
 }

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import React from "react";
+import Nav from "../components/Nav";
 
 interface ILayout {
   title: string;
@@ -14,6 +15,7 @@ const Layout: React.FC<ILayout> = ({ title, children }) => {
 
   return (
     <>
+      <Nav />
       <main className="container-fluid">{children}</main>
     </>
   );

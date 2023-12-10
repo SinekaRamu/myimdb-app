@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   return (
     <nav className="titleBar">
-      <h1>My iMDb</h1>
+      <h1>MYiMDB</h1>
       <ul className="navBar">
         {/* <li>
           <Link to="/signup">SignUp</Link>
