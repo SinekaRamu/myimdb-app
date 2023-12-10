@@ -10,13 +10,17 @@
 }
 
 body {
-  padding: 10px;
-  background-color: #000;
+  background-color: #222;
+  height: 100vh;
 }
 h1,
 h2 {
   text-align: center;
   color: rgb(245, 197, 24);
+}
+
+h2 {
+  padding-bottom: 26px;
 }
 
 a {
@@ -30,7 +34,7 @@ a:hover {
 input,
 select {
   padding: 8px 10px;
-  color: #000;
+  color: #ccc;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -38,7 +42,7 @@ select {
   width: 280px;
 }
 label {
-  margin-bottom: 10px;
+  margin-bottom: 22px;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -62,8 +66,12 @@ option {
 
 /* class components */
 .titleBar {
+  height: 60px;
+  margin-bottom: 20px;
   display: flex;
+  align-items: center;
   justify-content: space-around;
+  background-color: #000;
 }
 .navBar {
   padding-right: 20px;
@@ -143,17 +151,20 @@ option {
 .gold {
   color: rgb(245, 197, 24);
 }
-.addMovie {
+.form-cover {
   margin: 0px auto;
   padding: 20px;
-  width: 500px;
+  width: 580px;
   text-align: center;
   background-color: hwb(0 12% 88% / 0.942);
   border: 1px solid #ccc;
   box-shadow: 0 0 20px #ccc;
 }
+.form-btn {
+  margin-bottom: 18px;
+}
 @media (max-width: 528px) {
-  #addMovie {
+  .form-cover {
     width: 300px;
   }
   form label {
