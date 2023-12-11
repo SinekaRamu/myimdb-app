@@ -1,13 +1,13 @@
 import axios from "axios";
-import { IMovie } from "../type";
+import { IMovie, IUserData } from "../type";
 // import { IUserData } from "../type";
 
 const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:5001",
 });
 
-export const addUser = () => {
-  return axiosInstance.post("/signup");
+export const addUser = (payload: IUserData) => {
+  return axiosInstance.post("/signup", payload);
 };
 
 export const getMovies = () => {

@@ -8,11 +8,11 @@ export interface IMovie {
 }
 
 export interface IUserData {
-  firstName?: string;
-  lastName?: string;
-  userName?: string;
+  first_name?: string;
+  last_name?: string;
+  user_name?: string;
   email: string;
-  password: string;
+  user_password: string;
 }
 
 export interface IShowError {

@@ -17,8 +17,8 @@ const LoginPage = () => {
   const handleLogin = async (u: IUserData) => {
     try {
       const userPayload = {
-        userName: u.userName,
-        password: u.password,
+        user_name: u.user_name,
+        user_password: u.user_password,
       };
       await addUser(userPayload);
       setShowModalMsg({
@@ -41,8 +41,7 @@ const LoginPage = () => {
       <Layout title="Login">
         <div className="form-cover">
           <h2>Log In</h2>
-          <SignupForm />
-          <p> or</p>
+          <SignupForm type="login" />
           <Link to="/signup">Create a New account</Link>
         </div>
       </Layout>
