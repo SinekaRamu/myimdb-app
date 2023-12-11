@@ -1,29 +1,31 @@
-import { Link } from "react-router-dom";
-
 import Layout from "../components/Layout";
-import SignupForm from "../components/SignupForm";
+import UserForm from "../components/SignupForm";
+import Model from "../components/Model";
+import { Link } from "react-router-dom";
 import { IUserData, IShowError } from "../type";
 import { useState } from "react";
-import Model from "../components/Model";
-import { addUser } from "../services/api";
+import { getToken } from "../services/api";
 
-const LoginPage = () => {
+const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [showModalMsg, setShowModalMsg] = useState<IShowError>({
     action: "",
     msg: "",
   });
 
-  const handleLogin = async (u: IUserData) => {
+  async function handleAdd(u: IUserData) {
     try {
       const userPayload = {
-        user_name: u.user_name,
+        email: u.email,
         user_password: u.user_password,
       };
-      await addUser(userPayload);
+      const res = await getToken(userPayload);
+      console.log(res.data);
+      const token = res.data.token;
+      localStorage.setItem("token", token);
       setShowModalMsg({
         action: "Succes",
-        msg: "Movie successfully Added",
+        msg: "Welcome",
       });
     } catch (error) {
       if (error instanceof Error) {
@@ -35,14 +37,17 @@ const LoginPage = () => {
     } finally {
       setShowModal(true);
     }
-  };
+  }
+
   return (
     <>
       <Layout title="Login">
+        <h2>LOGIN</h2>
         <div className="form-cover">
-          <h2>Log In</h2>
-          <SignupForm type="login" />
-          <Link to="/signup">Create a New account</Link>
+          <UserForm type="login" addUser={handleAdd} />
+          <Link to="/signup" role="button" className="form-button">
+            create new account
+          </Link>
         </div>
       </Layout>
       {showModal && <Model showModalMsg={showModalMsg} />}
@@ -50,4 +55,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Login;
