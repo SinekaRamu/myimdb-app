@@ -12,9 +12,9 @@ const Home = () => {
 
   useEffect(() => {
     async function getMoviesFromAPI() {
-      setIsLoading(true);
-
       try {
+        setIsLoading(true);
+
         const response = await getMovies();
         setMovies(response.data);
       } catch (error) {
@@ -26,7 +26,7 @@ const Home = () => {
       }
     }
     getMoviesFromAPI();
-  }, [movies]);
+  }, []);
   return (
     <Layout title="MyIMDb">
       {isLoading ? (
