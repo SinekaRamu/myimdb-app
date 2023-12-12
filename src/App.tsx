@@ -5,6 +5,7 @@ import NotfoundPage from "./pages/NotfoundPage";
 import Home from "./pages/HomePage";
 import Signup from "./pages/SignupPage";
 import Login from "./pages/LoginPage";
+const Account = lazy(() => import("./pages/ViewAccountPage"));
 const AddMovie = lazy(() => import("./pages/AddMoviePage"));
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/u/account" element={<Account />} />
           <Route path="/addMovie" element={<AddMovie />} />
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
