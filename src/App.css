@@ -33,6 +33,7 @@ a:hover {
 
 input,
 select {
+  width: 280px;
   padding: 8px 10px;
   color: #ccc;
   border: 1px solid #ccc;

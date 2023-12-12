@@ -1,10 +1,11 @@
 import "./App.css";
-import { Suspense } from "react";
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import NotfoundPage from "./pages/NotfoundPage";
 import Home from "./pages/HomePage";
 import Signup from "./pages/SignupPage";
 import Login from "./pages/LoginPage";
+const AddMovie = lazy(() => import("./pages/AddMoviePage"));
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/addMovie" element={<AddMovie />} />
           <Route path="*" element={<NotfoundPage />} />
         </Routes>
       </BrowserRouter>

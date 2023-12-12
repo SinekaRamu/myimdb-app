@@ -6,9 +6,12 @@ const axiosInstance = axios.create({
   baseURL: "http://0.0.0.0:5001",
 });
 
-//get token
-const token = localStorage.getItem("token");
-const headers = { Authorization: `Bearer ${token}` };
+const axiosHeader = axios.create({
+  baseURL: "http://0.0.0.0:5001",
+  headers: {
+    Authorization: `Bearer ${localStorage.getItem("token")}`,
+  },
+});
 
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload);
@@ -19,25 +22,14 @@ export const getToken = (payload: IUserData) => {
 };
 
 export const getUser = () => {
-  return axiosInstance.post("/users/u", { headers });
+  const token = localStorage.getItem("token");
+  const headers = { Authorization: `Bearer ${token}` };
+  return axiosInstance.get("/u/account", { headers });
 };
-
 export const getMovies = () => {
-  return axiosInstance.get("/movies");
+  return axiosHeader.get("/movies");
 };
 
 export const addMovie = (payload: IMovie) => {
-  return axiosInstance.post("/movies", payload);
-};
-
-export const updateMovie = (payload: IMovie, movieId: number) => {
-  return axiosInstance.put(`/movies/${movieId}`, payload);
-};
-
-export const deleteMovie = (movieId: number) => {
-  return axiosInstance.delete(`/movies/${movieId}`);
-};
-
-export const getMovie = async (movieId: number) => {
-  return axiosInstance.get(`/movies/${movieId}`);
+  return axiosHeader.post("/movies", payload);
 };
