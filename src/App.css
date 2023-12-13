@@ -5,14 +5,9 @@
   padding: 0;
   font-family: "poppins", sans-serif;
   box-sizing: border-box;
-  text-align: center;
   color: #fff;
 }
 
-body {
-  background-color: #222;
-  height: 100vh;
-}
 h1,
 h2 {
   text-align: center;
@@ -20,9 +15,8 @@ h2 {
 }
 
 h2 {
-  padding-bottom: 26px;
+  margin-bottom: 20px;
 }
-
 a {
   text-decoration: none;
   font-size: 20px;
@@ -34,8 +28,9 @@ a:hover {
 input,
 select {
   width: 280px;
+  margin-bottom: 22px;
   padding: 8px 10px;
-  color: #ccc;
+  color: #fff;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
@@ -43,7 +38,7 @@ select {
   width: 280px;
 }
 label {
-  margin-bottom: 22px;
+  margin-bottom: 10px;
   font-size: 18px;
   display: flex;
   align-items: center;
@@ -51,15 +46,16 @@ label {
 }
 
 button {
+  margin-bottom: 20px;
+  padding: 9px 15px;
   background-color: rgb(245, 197, 24);
   color: #000;
   border: none;
-  padding: 9px 15px;
   border-radius: 5px;
   cursor: pointer;
 }
 button:hover {
-  background-color: rgba(245, 197, 24, 0.8);
+  background-color: #f5c518cc;
 }
 option {
   color: #000;
@@ -74,16 +70,17 @@ option {
 .avatar {
   width: 35px;
   height: 35px;
-  padding-top: 3px;
   border-radius: 50%;
-  background-color: #fff1b7;
+  background-color: #f5c518cc;
 }
-.titleBar {
-  height: 60px;
-  margin-bottom: 20px;
+.flex-box {
   display: flex;
   align-items: center;
   justify-content: space-around;
+}
+.titleBar {
+  height: 60px;
+  margin-bottom: 35px;
   background-color: #000;
 }
 .navBar {
@@ -112,7 +109,7 @@ option {
   border-radius: 0px 5px 5px 0px;
 }
 .movie-cards {
-  padding-top: 35px;
+  padding-bottom: 35px;
   width: 1400px;
   margin: 0 auto;
   display: grid;
@@ -151,34 +148,33 @@ option {
   transform: scale(1.1);
 }
 
-.movie-card img {
+.card-img {
   width: 278px;
   height: 392px;
   box-shadow: 0 0 2px #ccc;
 }
+.movie-content {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
 .movie-card h3 {
   width: 20ch;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 }
-.star {
-  color: #fff;
-}
-.gold {
-  color: rgb(245, 197, 24);
-}
+
 .form-cover {
   margin: 0px auto;
-  padding: 20px;
+  padding: 30px;
   width: 580px;
   text-align: center;
   background-color: hwb(0 12% 88% / 0.942);
   border: 1px solid #ccc;
   box-shadow: 0 0 20px #ccc;
-}
-.form-btn {
-  margin-bottom: 18px;
 }
 @media (max-width: 528px) {
   .form-cover {
@@ -205,25 +201,6 @@ option {
 form label {
   justify-content: space-between;
 }
-.pagination {
-  margin-top: 25px;
-  padding: 20px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.pagination button {
-  background-color: rgb(245, 197, 24);
-  color: black;
-  padding: 10px 15px;
-  border: none;
-}
-
-.pagination button:disabled {
-  background-color: #ccc; /* Gray background for disabled buttons */
-  cursor: not-allowed;
-}
-
 .account-card {
   margin: 10px auto;
   width: 320px;
@@ -234,4 +211,28 @@ form label {
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid #ccc;
+}
+
+.right-side {
+  color: #f5c518;
+  background-color: #000;
+}
+
+.right-side:hover {
+  color: #000;
+}
+
+.movie-cover {
+  margin: 20px auto;
+  padding: 30px;
+  width: 580px;
+  background-color: hwb(0 12% 88% / 0.942);
+  box-shadow: 0 0 5px #ccc;
+}
+
+.rating-box {
+  margin: 10px 5px;
+  padding: 5px 10px;
+  background-color: #6d6d6d80;
+  border-radius: 5px;
 }

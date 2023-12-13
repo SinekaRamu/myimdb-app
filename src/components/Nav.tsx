@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Nav = () => {
   const token = localStorage.getItem("token");
   return (
-    <nav className="titleBar">
+    <nav className="titleBar flex-box">
       <Link to="/" className="logo">
         MYiMDB
       </Link>
