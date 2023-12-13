@@ -21,7 +21,7 @@ const Signup = () => {
       console.log(response);
       setMessage(response.data.message);
       navigate("/login");
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       setMessage(error.response.data.message[0]);
     }

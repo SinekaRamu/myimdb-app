@@ -6,13 +6,13 @@ import { useEffect, useState } from "react";
 import { IUserData } from "../type";
 
 const Account = () => {
-  let [user, setUser] = useState<IUserData>({
+  const [user, setUser] = useState<IUserData>({
     first_name: "",
     last_name: "",
     user_name: "",
     email: "",
   });
-  let [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const viewAccount = async () => {

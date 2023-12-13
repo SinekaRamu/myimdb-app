@@ -33,3 +33,7 @@ export const getMovies = () => {
 export const addMovie = (payload: IMovie) => {
   return axiosHeader.post("/movies", payload);
 };
+
+export const getMovie = async (movieId: string) => {
+  return axiosHeader.get(`/movies/${movieId}`);
+};

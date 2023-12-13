@@ -13,7 +13,7 @@ const MoviePage = () => {
     language: "",
     year: 0,
   });
-  let [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   useEffect(() => {
     const singleMovie = async (id: string) => {
@@ -29,7 +29,9 @@ const MoviePage = () => {
         console.log(message);
       }
     };
-    singleMovie(id);
+    if (id) {
+      singleMovie(id);
+    }
   }, [id]);
 
   return (
