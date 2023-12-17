@@ -1,9 +1,11 @@
 export interface IMovie {
+  id?: string;
   image: string;
   title: string;
   story?: string;
   language?: string;
   year: number | undefined;
+  rating?: [{ rating: number }];
 }
 
 export interface IgetMovie {
@@ -28,7 +30,7 @@ export interface IUserData {
 
 export interface IRating {
   rating: number;
-  movie_id: string;
+  movie_id?: string;
 }
 
 export interface IShowError {

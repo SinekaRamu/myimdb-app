@@ -2,21 +2,23 @@ import { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import { IMovie } from "../type";
 import { getMovies } from "../services/api";
-import Loading from "../components/Loading";
+import { Link } from "react-router-dom";
+// import Loading from "../components/Loading";
 import MovieCard from "../components/MovieCard";
 // import Home from "../components/Movies";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [movies, setMovies] = useState<IMovie[]>([]);
+  // const [rating, setRating] = useState([]);
 
   useEffect(() => {
     async function getMoviesFromAPI() {
       try {
         setIsLoading(true);
-
         const response = await getMovies();
         setMovies(response.data);
+        // setRating(response.data.overallRating);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);
@@ -27,18 +29,18 @@ const Home = () => {
     }
     getMoviesFromAPI();
   }, []);
+
   return (
     <Layout title="MyIMDb">
       {isLoading ? (
-        <>
-          <Loading />
-          <p>Loading Movies..</p>
-        </>
+        <p>Loading Movies..</p>
       ) : (
-        <div className="gridBox">
-          {movies.map((m, i) => (
-            <div className="movie-card" key={i}>
-              <MovieCard movie={m} />
+        <div className="movie-cards">
+          {movies.map((m) => (
+            <div className="movie-card" key={m.id}>
+              <Link to={`/movies/${m.id}`} role="button">
+                <MovieCard movie={m} />
+              </Link>
             </div>
           ))}
         </div>
