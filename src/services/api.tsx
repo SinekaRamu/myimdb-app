@@ -30,8 +30,10 @@ export const getToken = (payload: IUserData) => {
 export const getUser = () => {
   return axiosInstance.get("/u/account", setHeaders());
 };
-export const getMovies = () => {
-  return axiosInstance.get("/movies", setHeaders());
+export const getMovies = (search: string, page: number, pagesize: number) => {
+  return axiosInstance.get(
+    `/movies?search=${search}&page=${page}&pagesize=${pagesize}`
+  );
 };
 
 export const addMovie = (payload: IMovie) => {

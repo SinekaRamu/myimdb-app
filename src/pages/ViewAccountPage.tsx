@@ -20,7 +20,6 @@ const Account = () => {
         const res = await getUser();
         setUser(res.data);
       } catch (error: any) {
-        console.log(error);
         setMessage(error.response.data.message);
       }
     };
