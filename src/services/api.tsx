@@ -22,6 +22,9 @@ const setHeaders = () => {
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload, setHeaders());
 };
+export const updateUser = (payload: IUserData) => {
+  return axiosInstance.put("/u/account", payload, setHeaders());
+};
 
 export const getToken = (payload: IUserData) => {
   return axiosInstance.post("/login", payload, setHeaders());
@@ -36,12 +39,21 @@ export const getMovies = (search: string, page: number, pagesize: number) => {
   );
 };
 
+//MoviesApi
 export const addMovie = (payload: IMovie) => {
   return axiosInstance.post("/movies", payload, setHeaders());
 };
 
 export const getMovie = async (movieId: string) => {
   return axiosInstance.get(`/movies/${movieId}`, setHeaders());
+};
+
+export const updateMovie = (payload: IMovie, movieId: number) => {
+  return axiosInstance.put(`/movies/${movieId}`, payload);
+};
+
+export const deleteMovie = (movieId: number) => {
+  return axiosInstance.delete(`/movies/${movieId}`);
 };
 
 export const addRating = (payload: IRating, movieId: string) => {

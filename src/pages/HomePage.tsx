@@ -8,7 +8,7 @@ import Movies from "../components/DisplayMovies";
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false);
-  let [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [totalPages, setTotalPages] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +36,7 @@ const Home = () => {
 
   useEffect(() => {
     getMoviesFromAPI(searchTerm, currentPage);
-  }, [currentPage]);
+  }, [currentPage, searchTerm]);
 
   const handlePrevPage = () => {
     if (currentPage > 1) {
@@ -71,7 +71,7 @@ const Home = () => {
           {message && <p className="error">{message}</p>}
           <Movies movies={movies} />
 
-          <div className="pagination">
+          <div className="pagination flex-box">
             <button onClick={handlePrevPage} disabled={currentPage === 1}>
               Previous Page
             </button>

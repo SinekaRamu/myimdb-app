@@ -1,18 +1,25 @@
 import { Link } from "react-router-dom";
 
 import Layout from "../components/Layout";
-import { getUser } from "../services/api";
+import { getUser, updateUser } from "../services/api";
 import { useEffect, useState } from "react";
 import { IUserData } from "../type";
+import UserDataField from "../components/UserDataField";
+// import UserForm from "../components/UserForm";
 
 const Account = () => {
-  const [user, setUser] = useState<IUserData>({
+  let [user, setUser] = useState<IUserData>({
     first_name: "",
     last_name: "",
     user_name: "",
     email: "",
   });
   const [message, setMessage] = useState("");
+  let [update, setupdate] = useState<IUserData>();
+
+  const handleDelete = () => {
+    localStorage.setItem("token", "");
+  };
 
   useEffect(() => {
     const viewAccount = async () => {
@@ -20,43 +27,78 @@ const Account = () => {
         const res = await getUser();
         setUser(res.data);
       } catch (error: any) {
-        setMessage(error.response.data.message);
+        setMessage(error.message || error.response.data.message);
       }
     };
     viewAccount();
   }, []);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setupdate({ ...user, [name]: value === undefined ? "" : value });
+  };
+
+  const handleUpdate = async () => {
+    try {
+      if (update) {
+        console.log(update);
+        const res = await updateUser(update);
+        setUser(res.data);
+      }
+    } catch (error: any) {
+      console.log(error);
+      setMessage(error.response.data.message);
+    }
+  };
+
   return (
     <Layout title="view Account">
-      <h2>Welcome, {user.first_name}</h2>
-      <div className="account-card">
-        <div className="bottom-line">
-          <p>First Name: </p>
-          <span>{user.first_name}</span>
-        </div>
-        <div className="bottom-line">
-          <p>Last Name: </p>
-          <span>{user.last_name}</span>
-        </div>
-        <div className="bottom-line">
-          <p>Last Name: </p>
-          <span>{user.last_name}</span>
-        </div>
-        <div className="bottom-line">
-          <p>User Name: </p>
-          <span>{user.user_name}</span>
-        </div>
-        <div className="bottom-line">
-          <p>email ID: </p>
-          <span>{user.email}</span>
-        </div>
-      </div>
-      {message && (
+      {message ? (
+        <p className="error">{message}</p>
+      ) : (
         <>
-          <p>{message}</p>
-          <Link to="/login">First, login</Link>
+          <h2>Welcome, {user.first_name}</h2>
+          <div className="account-card">
+            <UserDataField
+              user={user.first_name}
+              type="text"
+              label="First Name: "
+              name="first_name"
+              handleChange={handleChange}
+              handleUpdate={handleUpdate}
+            />
+            <UserDataField
+              user={user.last_name}
+              type="text"
+              label="Last Name: "
+              name="last_name"
+              handleChange={handleChange}
+              handleUpdate={handleUpdate}
+            />
+            <UserDataField
+              user={user.user_name}
+              type="text"
+              label="User Name: "
+              name="user_name"
+              handleUpdate={handleUpdate}
+              handleChange={handleChange}
+            />
+            <div className="bottom-line">
+              <p>Email ID: </p>
+              <span> {user.email}</span>
+            </div>
+            <button>Change Password</button>
+          </div>
         </>
       )}
+      <div className="flex-box">
+        <Link to="/" role="button">
+          Back
+        </Link>
+        <Link to="/login" role="button" onClick={handleDelete}>
+          Logout
+        </Link>
+      </div>
     </Layout>
   );
 };
