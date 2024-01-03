@@ -1,5 +1,5 @@
 import axios from "axios";
-import { IMovie, IRating, IUserData } from "../type";
+import { IMovie, IRating, IUserData, IUserPassword } from "../type";
 // import { IUserData } from "../type";
 
 const axiosInstance = axios.create({
@@ -23,7 +23,7 @@ export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload, setHeaders());
 };
 export const updateUser = (payload: IUserData) => {
-  return axiosInstance.put("/u/account", payload, setHeaders());
+  return axiosInstance.put("/users/u", payload, setHeaders());
 };
 
 export const getToken = (payload: IUserData) => {
@@ -32,6 +32,10 @@ export const getToken = (payload: IUserData) => {
 
 export const getUser = () => {
   return axiosInstance.get("/u/account", setHeaders());
+};
+
+export const updateUserPassword = (payload: IUserPassword) => {
+  return axiosInstance.put("/u/account/password", payload, setHeaders());
 };
 export const getMovies = (search: string, page: number, pagesize: number) => {
   return axiosInstance.get(
@@ -53,7 +57,7 @@ export const updateMovie = (payload: IMovie, movieId: number) => {
 };
 
 export const deleteMovie = (movieId: number) => {
-  return axiosInstance.delete(`/movies/${movieId}`);
+  return axiosInstance.delete(`/movies/${movieId}`, setHeaders());
 };
 
 export const addRating = (payload: IRating, movieId: string) => {

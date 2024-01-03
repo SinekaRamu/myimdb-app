@@ -8,14 +8,14 @@ import UserDataField from "../components/UserDataField";
 // import UserForm from "../components/UserForm";
 
 const Account = () => {
-  let [user, setUser] = useState<IUserData>({
+  const [user, setUser] = useState<IUserData>({
     first_name: "",
     last_name: "",
     user_name: "",
     email: "",
   });
   const [message, setMessage] = useState("");
-  let [update, setupdate] = useState<IUserData>();
+  const [update, setupdate] = useState<IUserData>();
 
   const handleDelete = () => {
     localStorage.setItem("token", "");
@@ -41,12 +41,11 @@ const Account = () => {
   const handleUpdate = async () => {
     try {
       if (update) {
-        console.log(update);
         const res = await updateUser(update);
+        console.log(update);
         setUser(res.data);
       }
     } catch (error: any) {
-      console.log(error);
       setMessage(error.response.data.message);
     }
   };
