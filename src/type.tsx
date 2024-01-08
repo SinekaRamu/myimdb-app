@@ -42,3 +42,12 @@ export interface IUserPassword {
   oldPassword: string;
   newPassword: string;
 }
+
+export interface IChangePassword {
+  oldPassword: string;
+  newPassword: string;
+}
+
+export interface IForgetPassword {
+  email: string;
+}

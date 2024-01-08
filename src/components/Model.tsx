@@ -7,17 +7,21 @@ interface IModel {
 
 const Model: React.FC<IModel> = ({ showModalMsg, toggleModel }) => {
   return (
-    <dialog open>
-      <article>
-        <Link
-          to="/"
-          className="close"
-          onClick={toggleModel && (() => toggleModel())}
-        ></Link>
-        <h3>{showModalMsg.action}</h3>
-        <p>{showModalMsg.msg}</p>
-      </article>
-    </dialog>
+    <div className="overlay">
+      <dialog open>
+        <article className="modal">
+          <Link
+            to="/"
+            className="close-button"
+            onClick={toggleModel && (() => toggleModel())}
+          >
+            x
+          </Link>
+          <h2>{showModalMsg.action}</h2>
+          <p>{showModalMsg.msg}</p>
+        </article>
+      </dialog>
+    </div>
   );
 };
 

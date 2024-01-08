@@ -1,5 +1,11 @@
 import axios from "axios";
-import { IMovie, IRating, IUserData, IUserPassword } from "../type";
+import {
+  IForgetPassword,
+  IMovie,
+  IRating,
+  IUserData,
+  IUserPassword,
+} from "../type";
 // import { IUserData } from "../type";
 
 const axiosInstance = axios.create({
@@ -35,12 +41,16 @@ export const getUser = () => {
 };
 
 export const updateUserPassword = (payload: IUserPassword) => {
-  return axiosInstance.put("/u/account/password", payload, setHeaders());
+  return axiosInstance.patch("/users/u/password", payload, setHeaders());
 };
 export const getMovies = (search: string, page: number, pagesize: number) => {
   return axiosInstance.get(
     `/movies?search=${search}&page=${page}&pagesize=${pagesize}`
   );
+};
+
+export const forgetPasswordApi = (payload: IForgetPassword) => {
+  return axiosInstance.post("/forget-password", payload);
 };
 
 //MoviesApi
