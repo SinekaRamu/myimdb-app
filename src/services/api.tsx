@@ -8,7 +8,7 @@ import {
 } from "../type";
 
 const axiosInstance = axios.create({
-  baseURL: "http://0.0.0.0:3456",
+  baseURL: "http://0.0.0.0:5001",
 });
 
 const setHeaders = () => {
@@ -62,7 +62,7 @@ export const getUser = () => {
 };
 
 export const updateUser = (payload: IUserData) => {
-  return axiosInstance.put("/u/account", payload, setHeaders());
+  return axiosInstance.put("/users/u", payload, setHeaders());
 };
 export const updateUserPassword = (payload: IChangePassword) => {
   return axiosInstance.put("/u/account/password", payload, setHeaders());

@@ -17,7 +17,7 @@ const MoviePage = () => {
     language: "",
     year: 0,
   });
-  let [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
   const [rating, setRating] = useState(0);
 
   // // Catch Rating value
@@ -43,7 +43,6 @@ const MoviePage = () => {
   // }, []);
 
   const handleDelete = () => {
-    console.log("delete");
     deleteMovie(id);
   };
 
@@ -55,6 +54,7 @@ const MoviePage = () => {
       }
     } catch (error: any) {
       if (error) {
+        console.log(error);
         setMessage(error.response.data.message[0]);
       }
     }

@@ -7,7 +7,7 @@ import { IRating } from "../type";
 
 const AddRating = () => {
   const { id } = useParams();
-  let [message, setMessage] = useState("");
+  const [message, setMessage] = useState("");
 
   async function handleAdd(r: IRating) {
     try {
