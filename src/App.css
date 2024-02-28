@@ -238,6 +238,18 @@ form label {
   border-radius: 5px;
 }
 
+.rating {
+  width: 180px;
+}
+
+.rating_star {
+  cursor: pointer;
+  color: #f5c518;
+}
+
+.rating_noStar {
+  color: none;
+}
 /* Custom styles for the modal */
 .modal {
   position: fixed;
@@ -273,4 +285,10 @@ form label {
   height: 100%;
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+.error {
+  padding: 5px;
+  text-align: center;
+  color: #ff4848db;
 }
