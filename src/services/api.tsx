@@ -28,9 +28,6 @@ const setHeaders = () => {
 export const addUser = (payload: IUserData) => {
   return axiosInstance.post("/signup", payload, setHeaders());
 };
-export const updateUser = (payload: IUserData) => {
-  return axiosInstance.put("/users/u", payload, setHeaders());
-};
 
 export const getToken = (payload: IUserData) => {
   return axiosInstance.post("/login", payload, setHeaders());
@@ -39,13 +36,22 @@ export const getToken = (payload: IUserData) => {
 export const getUser = () => {
   return axiosInstance.get("/u/account", setHeaders());
 };
+export const updateUser = (payload: IUserData) => {
+  return axiosInstance.put("/users/u", payload, setHeaders());
+};
 
 export const updateUserPassword = (payload: IUserPassword) => {
   return axiosInstance.patch("/users/u/password", payload, setHeaders());
 };
-export const getMovies = (search: string, page: number, pagesize: number) => {
+
+export const getMovies = (
+  search: string,
+  page: number,
+  pagesize: number,
+  sortby: string
+) => {
   return axiosInstance.get(
-    `/movies?search=${search}&page=${page}&pagesize=${pagesize}`
+    `/movies?search=${search}&page=${page}&pagesize=${pagesize}&sortby=${sortby}`
   );
 };
 
@@ -54,7 +60,7 @@ export const forgetPasswordApi = (payload: IForgetPassword) => {
 };
 
 //MoviesApi
-export const addMovie = (payload: IMovie) => {
+export const addMovie = (payload: FormData) => {
   return axiosInstance.post("/movies", payload, setHeaders());
 };
 

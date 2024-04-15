@@ -70,7 +70,6 @@ option {
 .avatar {
   width: 35px;
   height: 35px;
-  padding-left: 5px;
   border-radius: 50%;
   background-color: #f5c518cc;
 }
@@ -99,14 +98,14 @@ option {
   text-align: center;
   margin-bottom: 20px;
 }
-#movie-search {
+.movie-search {
   border-radius: 5px 0px 0px 5px;
 }
-#movie-search:focus {
+.movie-search:focus {
   outline: 2px solid rgb(245, 197, 24);
 }
 
-#search-button {
+.search-button {
   border-radius: 0px 5px 5px 0px;
 }
 .movie-cards {
@@ -291,4 +290,44 @@ form label {
   padding: 5px;
   text-align: center;
   color: #ff4848db;
+}
+
+/* pagination */
+.pagination {
+  margin-top: 25px;
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.pagination button {
+  background-color: rgb(245, 197, 24);
+  color: black;
+  padding: 10px 15px;
+  border: none;
+}
+
+.pagination button:disabled {
+  background-color: #ccc; /* Gray background for disabled buttons */
+  cursor: not-allowed;
+}
+
+.pass-wrapper {
+  position: relative;
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.pass-wrapper i {
+  position: absolute;
+  top: 38%;
+  right: 16%;
+}
+/* .pass-wrapper i:hover {
+  color: #00fcb6;
+  cursor: pointer;
+} */
+
+.filter-button {
+  width: 80px;
 }

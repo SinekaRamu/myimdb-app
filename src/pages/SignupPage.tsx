@@ -22,18 +22,17 @@ const Signup = () => {
       setMessage(response.data.message);
       navigate("/login");
     } catch (error: any) {
-      console.log(error);
       setMessage(error.response.data.message[0]);
     }
   }
 
   return (
     <>
-      <Layout title="Login">
+      <Layout title="signup">
         <h2>SIGNUP</h2>
         <div className="form-cover">
           <UserForm type="signup" addUser={handleAdd} />
-          {message && <p>{message}</p>}
+          {message && <p className="error">{message}</p>}
           <Link to="/login" role="button" className="form-button">
             Login account
           </Link>

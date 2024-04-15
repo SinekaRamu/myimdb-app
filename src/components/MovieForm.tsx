@@ -2,11 +2,9 @@ import { useState } from "react";
 import { IMovie } from "../type";
 import FormInputs from "./FormInput";
 import { Link } from "react-router-dom";
-// import FormButtons from "./FormButtons";
 interface IForm {
   type: string;
-  addingMovie?: (m: IMovie) => void;
-  //   getMovie?: IMovie;
+  addingMovie?: (m: FormData) => void;
 }
 
 const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
@@ -15,17 +13,41 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
     title: "",
     story: "",
     language: "",
-    year: undefined,
+    year: 0,
   });
+
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = e.target;
     setMovie({ ...movie, [name]: value === undefined ? "" : value });
   }
 
+  function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      setMovie({ ...movie, image: file });
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const formData = new FormData();
+
+    formData.append("image", movie.image as File);
+    formData.append("title", movie.title);
+    formData.append("story", movie.story);
+    formData.append("year", movie.year.toString());
+    formData.append("language", movie.language);
+
     if (addingMovie) {
-      addingMovie(movie);
+      addingMovie(formData);
     }
   }
 
@@ -33,13 +55,29 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
     <form onSubmit={(e) => handleSubmit(e)} className="form-cover">
       <>
         <div className="form-input">
-          <FormInputs
-            label="Enter image url"
-            type="text"
-            name="image"
-            value={movie.image}
-            handleChange={handleChange}
-          />
+          <label>
+            upload image
+            <input
+              type="file"
+              name="image"
+              accept=".png, .jpeg, .jpg"
+              // value={movie.image}
+              onChange={(e) => handleFileChange(e)}
+            />
+          </label>
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Preview"
+              style={{
+                maxWidth: "100%",
+                maxHeight: "200px",
+                marginBottom: "10px",
+                boxShadow: "0 0 5px #fff",
+              }}
+            />
+          )}
+
           <FormInputs
             label="Enter Movie Title"
             type="text"
@@ -71,7 +109,7 @@ const MovieForm: React.FC<IForm> = ({ type, addingMovie }) => {
             handleChange={handleChange}
           />
         </div>
-        <div className="form-input home-bar">
+        <div className="flex-box">
           <button type="submit">
             {type == "edit" ? <>update</> : <>Add</>}
           </button>

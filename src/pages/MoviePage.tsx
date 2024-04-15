@@ -38,7 +38,11 @@ const MoviePage = () => {
     <Layout title="single movie">
       <div className="movie-cover">
         <h2>{movie.title}</h2>
-        <img src={movie.image} alt={movie.title} className="card-img" />
+        <img
+          src={`uploads/${movie.image}`}
+          alt={movie.title}
+          className="card-img"
+        />
         <div className="movie-content">
           <p>Description: {movie.story}</p>
           <p>Language: {movie.language}</p>
